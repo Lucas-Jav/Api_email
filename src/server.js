@@ -9,11 +9,11 @@ env.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(urlencoded({ extended: false }));
+app.use(json());
+app.use(cors())
+app.use(express.json())
 
-
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-});
 
 app.get('/', (req, res) => {
     res.send('Hey this is my API running 🥳')
@@ -32,7 +32,7 @@ const transporter = createTransport({
 // Rota para enviar e-mail
 app.post('/enviar-email', (req, res) => {
     const { destinatario, assunto, corpo } = req.body;
-
+    
     const mailOptions = {
         from: destinatario,
         to: 'lucasrazebra@gmail.com',
@@ -42,7 +42,7 @@ app.post('/enviar-email', (req, res) => {
         
         ${corpo}`,
     };
-
+    
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Erro no envio do e-mail:', error);
@@ -54,3 +54,6 @@ app.post('/enviar-email', (req, res) => {
     });
 });
 
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});
