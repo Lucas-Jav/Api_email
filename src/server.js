@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 const transporter = createTransport({
     service: 'Gmail', // Ou use um servidor SMTP personalizado
     secure: true,
+    port: 587,
     auth: {
         user: process.env.USER,
         pass: process.env.PASS,
