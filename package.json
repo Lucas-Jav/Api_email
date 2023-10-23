@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon src/server.js",
-    "vercel-build": "node src/server.js"
   },
   "keywords": [],
   "author": "",
