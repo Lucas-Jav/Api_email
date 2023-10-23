@@ -13,6 +13,14 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 app.use(cors())
 
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});
+
+app.get('/', (req, res) => {
+    res.send('Hey this is my API running 🥳')
+})
+
 // Configurar o Nodemailer com suas credenciais de e-mail
 const transporter = createTransport({
     service: 'Gmail', // Ou use um servidor SMTP personalizado
@@ -48,6 +56,3 @@ app.post('/enviar-email', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-});
